@@ -11,19 +11,36 @@
             </li>
           </ul>
         </nav>
+        <div class="ml-auto flex h-full items-center">
+          <action-button v-if="!isLoggedIn" @click="loginUser" />
+          <profile-image v-else />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import ActionButton from "@/components/ActionButton.vue"
+import ProfileImage from "@/components/ProfileImage.vue"
+
 export default {
   name: "MainNav",
+  components: {
+    ActionButton,
+    ProfileImage
+  },
   data() {
     return {
       company: "Cone Careers",
       url: "https://careers.google.com",
-      menuItems: ["Teams", "Locations", "Life at Cone Corp", "How we hire", "Students", "Jobs"]
+      menuItems: ["Teams", "Locations", "Life at Cone Corp", "How we hire", "Students", "Jobs"],
+      isLoggedIn: false
+    }
+  },
+  methods: {
+    loginUser() {
+      this.isLoggedIn = true
     }
   }
 }
