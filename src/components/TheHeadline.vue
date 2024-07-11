@@ -9,6 +9,8 @@
   </section>
 </template>
 <script>
+import nextElementInList from "@/utils/nextElementInList"
+
 export default {
   name: "TheHeadline",
   data() {
@@ -34,9 +36,7 @@ export default {
   methods: {
     changeTitle() {
       this.interval = setInterval(() => {
-        const currentActionIndex = this.actions.indexOf(this.action) // 0
-        const nextActionIndex = (currentActionIndex + 1) % 4
-        this.action = this.actions[nextActionIndex]
+        this.action = nextElementInList(this.actions, this.action)
       }, 3000)
     }
   }
